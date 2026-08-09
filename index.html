@@ -374,7 +374,7 @@
 
 <body class="bg-void text-white antialiased overflow-x-hidden">
   <!-- SİNEMATİK AÇILIŞ PERDESİ -->
-  <div id="loading-curtain" class="fixed inset-0 bg-[#0a0a0a] z-[9999] transition-opacity duration-1000 ease-out pointer-events-none"></div>
+  <div id="loading-curtain" class="fixed inset-0 bg-[#0a0a0a] z-[9999] opacity-100 transition-opacity duration-1000 ease-out pointer-events-none"></div>
 
   <!-- NAVBAR -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
@@ -1124,7 +1124,10 @@
         function revealHero() {
           if (revealed) return;
           revealed = true;
-          if (curtain) curtain.style.opacity = '0';
+          if (curtain) {
+            curtain.classList.add('opacity-0');
+            curtain.classList.remove('opacity-100');
+          }
           videoElement.classList.remove('opacity-0');
           videoElement.classList.add('opacity-100');
           if (poster) {
@@ -1137,7 +1140,8 @@
           }
         }
 
-        // Video oynamaya hazır olduğunda perdeyi kaldır, videoyu pürüzsüz göster
+        // Video ilk karesini oynatmaya başladığı an (atlamayı önleyen en kesin an)
+        videoElement.addEventListener('playing', revealHero);
         videoElement.addEventListener('canplaythrough', revealHero);
         videoElement.addEventListener('canplay', revealHero);
 
