@@ -383,9 +383,22 @@
       </a>
 
       <div class="hidden md:flex items-center gap-8">
-        <a href="#brands" class="nav-link" id="nav-brands">Markalar</a>
-        <a href="#neural" class="nav-link" id="nav-neural">Neural DSP</a>
-        <a href="#suhr-cioks" class="nav-link" id="nav-gear">Ekipmanlar</a>
+        <!-- MARKALAR Dropdown -->
+        <div class="group relative inline-block">
+          <button type="button" class="nav-link flex items-center gap-1.5 py-2 cursor-pointer focus:outline-none" id="nav-brands">
+            <span>Markalar</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 opacity-60 transition-transform duration-300 group-hover:rotate-180 group-hover:opacity-100">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          
+          <div class="absolute left-0 mt-2 w-48 rounded-xl bg-zinc-950/95 backdrop-blur-xl border border-zinc-800/80 p-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+            <a href="#neural-dsp" class="block px-4 py-2 text-xs font-semibold tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 rounded-lg transition-all">Neural DSP</a>
+            <a href="#suhr-guitars" class="block px-4 py-2 text-xs font-semibold tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 rounded-lg transition-all">Suhr Guitars</a>
+            <a href="#cioks" class="block px-4 py-2 text-xs font-semibold tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 rounded-lg transition-all">CIOKS</a>
+          </div>
+        </div>
+
         <a href="#stats" class="nav-link" id="nav-about">Hakkımızda</a>
         <a href="https://wa.me/905428204020?text=Merhaba%2C%20Neural%20DSP%20stok%20ve%20fiyat%20bilgisi%20almak%20istiyorum."
           target="_blank" rel="noopener noreferrer" id="nav-cta"
@@ -406,13 +419,15 @@
     </nav>
 
     <div id="mobile-menu" class="md:hidden hidden border-t border-white/5" style="background:rgba(8,8,8,0.97);">
-      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5">
-        <a href="#brands" class="nav-link text-sm"
-          onclick="document.getElementById('mobile-menu').classList.add('hidden')">Markalar</a>
-        <a href="#neural" class="nav-link text-sm"
+      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
+        <div class="text-[10px] font-bold tracking-widest uppercase text-zinc-500 pt-1">Markalar</div>
+        <a href="#neural-dsp" class="nav-link text-sm pl-2"
           onclick="document.getElementById('mobile-menu').classList.add('hidden')">Neural DSP</a>
-        <a href="#suhr-cioks" class="nav-link text-sm"
-          onclick="document.getElementById('mobile-menu').classList.add('hidden')">Ekipmanlar</a>
+        <a href="#suhr-guitars" class="nav-link text-sm pl-2"
+          onclick="document.getElementById('mobile-menu').classList.add('hidden')">Suhr Guitars</a>
+        <a href="#cioks" class="nav-link text-sm pl-2"
+          onclick="document.getElementById('mobile-menu').classList.add('hidden')">CIOKS</a>
+        <div class="h-px bg-white/5 my-1"></div>
         <a href="#stats" class="nav-link text-sm"
           onclick="document.getElementById('mobile-menu').classList.add('hidden')">Hakkımızda</a>
         <a href="https://wa.me/905428204020?text=Merhaba%2C%20Neural%20DSP%20stok%20ve%20fiyat%20bilgisi%20almak%20istiyorum."
@@ -582,7 +597,7 @@
     </section>
 
     <!-- ─── NEURAL DSP FEATURE ─── -->
-    <section id="neural" class="relative py-24 lg:py-36 grid-bg">
+    <section id="neural-dsp" class="relative py-24 lg:py-36 grid-bg">
       <div class="absolute inset-0"
         style="background:linear-gradient(to bottom,#0a0a0a,transparent 20%,transparent 80%,#0a0a0a)"></div>
 
@@ -743,7 +758,7 @@
         <div class="grid md:grid-cols-2 gap-6">
 
           <!-- Suhr -->
-          <div class="brand-card rounded-2xl group" id="suhr-card">
+          <div class="brand-card rounded-2xl group" id="suhr-guitars">
             <div class="relative overflow-hidden" style="aspect-ratio:16/9;">
               <img src="assets/images/suhr/scott_henderson_edited.jpg" alt="Suhr Guitars — Scott Henderson Signature"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -786,7 +801,7 @@
           </div>
 
           <!-- Cioks -->
-          <div class="brand-card rounded-2xl group" id="cioks-card">
+          <div class="brand-card rounded-2xl group" id="cioks">
             <div class="relative overflow-hidden" style="aspect-ratio:16/9;">
               <img src="assets/images/cioks/dc7_crux_edited.jpg"
                 alt="Cioks DC7 Crux — Profesyonel Pedalboard Güç Kaynağı"
