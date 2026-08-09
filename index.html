@@ -373,6 +373,8 @@
 </head>
 
 <body class="bg-void text-white antialiased overflow-x-hidden">
+  <!-- SİNEMATİK AÇILIŞ PERDESİ -->
+  <div id="loading-curtain" class="fixed inset-0 bg-[#0a0a0a] z-[9999] transition-opacity duration-1000 ease-out pointer-events-none"></div>
 
   <!-- NAVBAR -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
@@ -477,7 +479,7 @@
           aria-hidden="true">
         <!-- src'si sayfa yüklendiğinde JS tarafından atanır -->
         <video id="hero-video"
-          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" autoplay muted
+          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-out" autoplay muted
           loop playsinline preload="auto" aria-hidden="true">
         </video>
         <!-- Karartma katmanı: videonun üzerindeki metin netliği için -->
@@ -886,7 +888,7 @@
     <section id="stats"
       class="relative w-full py-28 px-6 lg:px-12 overflow-hidden bg-cover bg-center bg-no-repeat rounded-3xl max-w-7xl mx-auto border border-zinc-900/50 shadow-2xl my-12"
       style="background-image: url('./assets/images/banners/banner1.jpg');">
-      
+
       <!-- Sinematik Karartma Katmanı (Overlay) -->
       <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-black/75 to-[#0a0a0a]/90 z-0"></div>
 
@@ -1102,38 +1104,54 @@
   </footer>
 
   <script>
-      // ── Hero Video Shuffle ──────────────────────────────────────────────────────
+      // ── Hero Video Shuffle & Fade-In Curtain ────────────────────────────────────
       (function () {
         var VIDEOS = ['assets/vids/suhr.mp4', 'assets/vids/cortex.mp4'];
         var FALLBACK = 'assets/vids/suhr.mp4';
 
-        var video = document.getElementById('hero-video');
+        var videoElement = document.getElementById('hero-video');
         var poster = document.getElementById('hero-poster');
-        if (!video) return;
+        var curtain = document.getElementById('loading-curtain');
+        if (!videoElement) return;
 
         // %50 / %50 eşit ihtimalle rastgele seçim
         var chosen = Math.random() < 0.5 ? VIDEOS[0] : VIDEOS[1];
 
-        video.src = chosen;
-        video.load();
+        videoElement.src = chosen;
+        videoElement.load();
 
-        // Video oynatılabilir hale gelince poster'ı gizle, video'yu göster
-        video.addEventListener('canplay', function onCanPlay() {
-          video.removeEventListener('canplay', onCanPlay);
-          video.classList.remove('opacity-0');
+        var revealed = false;
+        function revealHero() {
+          if (revealed) return;
+          revealed = true;
+          if (curtain) curtain.style.opacity = '0';
+          videoElement.classList.remove('opacity-0');
+          videoElement.classList.add('opacity-100');
           if (poster) {
             poster.style.transition = 'opacity 1s ease';
             poster.style.opacity = '0';
             setTimeout(function () { poster.style.display = 'none'; }, 1000);
           }
-        });
+          if (curtain) {
+            setTimeout(function () { curtain.remove(); }, 1000);
+          }
+        }
 
-        // Hata durumunda fallback: seçilen video yüklenemezse suhr.mp4'e geç
-        video.addEventListener('error', function onError() {
-          if (video.src.indexOf(FALLBACK) === -1) {
-            video.removeEventListener('error', onError);
-            video.src = FALLBACK;
-            video.load();
+        // Video oynamaya hazır olduğunda perdeyi kaldır, videoyu pürüzsüz göster
+        videoElement.addEventListener('canplaythrough', revealHero);
+        videoElement.addEventListener('canplay', revealHero);
+
+        // Fallback: Herhangi bir gecikmede en geç 2.5 saniyede perde açılır
+        setTimeout(revealHero, 2500);
+
+        // Hata durumunda fallback
+        videoElement.addEventListener('error', function onError() {
+          if (videoElement.src.indexOf(FALLBACK) === -1) {
+            videoElement.removeEventListener('error', onError);
+            videoElement.src = FALLBACK;
+            videoElement.load();
+          } else {
+            revealHero();
           }
         });
       })();
