@@ -473,11 +473,12 @@
       <div class="absolute inset-0 z-0">
         <!-- Fallback poster: video yüklenene kadar görünür, canplay event'inde JS gizler -->
         <img id="hero-poster" src="./assets/images/banners/banner2.jpg"
-          alt="Ambar Guitars — sinematik arka plan" class="absolute inset-0 w-full h-full object-cover"
+          alt="Ambar Guitars — sinematik arka plan"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
           aria-hidden="true">
         <!-- src'si sayfa yüklendiğinde JS tarafından atanır -->
         <video id="hero-video" poster="./assets/images/banners/banner2.jpg"
-          class="absolute inset-0 w-full h-full object-cover" autoplay muted
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" autoplay muted
           loop playsinline preload="auto" aria-hidden="true">
         </video>
         <!-- Karartma katmanı: videonun üzerindeki metin netliği için -->
