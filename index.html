@@ -374,7 +374,7 @@
 
 <body class="bg-void text-white antialiased overflow-x-hidden">
   <!-- SİNEMATİK AÇILIŞ PERDESİ -->
-  <div id="loading-curtain" class="fixed inset-0 bg-[#0a0a0a] z-[9999] opacity-100 transition-opacity duration-1000 ease-out pointer-events-none"></div>
+  <div id="loading-curtain" style="position:fixed; inset:0; background-color:#0a0a0a; z-index:9999; pointer-events:none; opacity:1; transition: opacity 1.2s ease-out;"></div>
 
   <!-- NAVBAR -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
@@ -1125,18 +1125,17 @@
           if (revealed) return;
           revealed = true;
           if (curtain) {
-            curtain.classList.add('opacity-0');
-            curtain.classList.remove('opacity-100');
+            curtain.style.opacity = '0';
           }
           videoElement.classList.remove('opacity-0');
           videoElement.classList.add('opacity-100');
           if (poster) {
-            poster.style.transition = 'opacity 1s ease';
+            poster.style.transition = 'opacity 1.2s ease-out';
             poster.style.opacity = '0';
-            setTimeout(function () { poster.style.display = 'none'; }, 1000);
+            setTimeout(function () { poster.style.display = 'none'; }, 1200);
           }
           if (curtain) {
-            setTimeout(function () { curtain.remove(); }, 1000);
+            setTimeout(function () { curtain.remove(); }, 1200);
           }
         }
 
