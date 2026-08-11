@@ -471,18 +471,8 @@
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
       <div class="absolute inset-0 z-0">
-        <!-- Fallback poster: video yüklenene kadar görünür, canplay event'inde JS gizler -->
-        <img id="hero-poster" src="./assets/images/banners/banner1.jpg"
-          alt="Ambar Guitars — sinematik arka plan"
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-          aria-hidden="true">
-        <!-- src'si sayfa yüklendiğinde JS tarafından atanır -->
-        <video id="hero-video" poster="./assets/images/banners/banner1.jpg"
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" autoplay muted
-          loop playsinline preload="auto" aria-hidden="true">
-        </video>
-        <!-- Karartma katmanı: videonun üzerindeki metin netliği için -->
-        <div class="absolute inset-0 bg-black/50 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style="background-image: url('./assets/images/banners/banner1.jpg');"></div>
+        <div class="absolute inset-0 bg-black/55 z-10"></div>
         <!-- Hafif ızgara doku -->
         <div class="absolute inset-0 grid-bg opacity-15 z-10"></div>
       </div>
@@ -777,7 +767,7 @@
           </div>
 
           <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-            DC7 <span class="bg-gradient-to-r from-zinc-400 to-zinc-600 bg-clip-text text-transparent">—</span> ULTRA İZOLE GÜÇ AMİRAL GEMİSİ
+            DC7 <span class="bg-gradient-to-r from-zinc-400 to-zinc-600 bg-clip-text text-transparent">—</span> ULTRA İZOLE GÜCÜN AMİRAL GEMİSİ
           </h2>
 
           <p class="text-zinc-400 font-light text-sm md:text-base leading-relaxed">
@@ -1148,41 +1138,6 @@
   </footer>
 
   <script>
-      // ── Hero Video Shuffle ──────────────────────────────────────────────────────
-      (function () {
-        var VIDEOS = ['assets/vids/suhr.mp4', 'assets/vids/cortex.mp4'];
-        var FALLBACK = 'assets/vids/suhr.mp4';
-
-        var video = document.getElementById('hero-video');
-        var poster = document.getElementById('hero-poster');
-        if (!video) return;
-
-        // %50 / %50 eşit ihtimalle rastgele seçim
-        var chosen = Math.random() < 0.5 ? VIDEOS[0] : VIDEOS[1];
-
-        video.src = chosen;
-        video.load();
-
-        // Video oynatılabilir hale gelince poster'ı gizle
-        video.addEventListener('canplay', function onCanPlay() {
-          video.removeEventListener('canplay', onCanPlay);
-          if (poster) {
-            poster.style.transition = 'opacity 1s ease';
-            poster.style.opacity = '0';
-            setTimeout(function () { poster.style.display = 'none'; }, 1000);
-          }
-        });
-
-        // Hata durumunda fallback
-        video.addEventListener('error', function onError() {
-          if (video.src.indexOf(FALLBACK) === -1) {
-            video.removeEventListener('error', onError);
-            video.src = FALLBACK;
-            video.load();
-          }
-        });
-      })();
-    // ────────────────────────────────────────────────────────────────────────────
 
     document.getElementById('mobile-menu-btn').addEventListener('click', function () {
       document.getElementById('mobile-menu').classList.toggle('hidden');
