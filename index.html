@@ -426,6 +426,7 @@
         </div>
 
         <a href="#stats" class="nav-link" id="nav-about">Hakkımızda</a>
+        <a href="#contact" class="nav-link" id="nav-contact">İletişim</a>
         <a href="https://wa.me/905428204020?text=Merhaba%2C%20Neural%20DSP%20stok%20ve%20fiyat%20bilgisi%20almak%20istiyorum."
           target="_blank" rel="noopener noreferrer" id="nav-cta"
           class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase text-white btn-whatsapp ml-2">
@@ -456,6 +457,8 @@
         <div class="h-px bg-white/5 my-1"></div>
         <a href="#stats" class="nav-link text-sm"
           onclick="document.getElementById('mobile-menu').classList.add('hidden')">Hakkımızda</a>
+        <a href="#contact" class="nav-link text-sm"
+          onclick="document.getElementById('mobile-menu').classList.add('hidden')">İletişim</a>
         <a href="https://wa.me/905428204020?text=Merhaba%2C%20Neural%20DSP%20stok%20ve%20fiyat%20bilgisi%20almak%20istiyorum."
           target="_blank" rel="noopener noreferrer"
           class="flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold btn-whatsapp mt-2">
@@ -1055,6 +1058,32 @@
 
         <p class="mt-6 text-sm" style="color:#505050">Ortalama yanıt süresi: <span style="color:#a0a0a0">5 dakika</span>
         </p>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT FORM ─── -->
+    <section id="contact" class="relative max-w-3xl mx-auto px-6 py-24 text-center">
+      <div class="bg-zinc-950/40 backdrop-blur-sm border border-zinc-800/80 p-8 md:p-12 rounded-3xl shadow-2xl space-y-6">
+        <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight uppercase">Bize Yazın</h2>
+        <p class="text-zinc-400 text-sm max-w-md mx-auto">Sorularınız, fiyat ve stok talepleriniz için formu doldurabilirsiniz. En kısa sürede e-posta adresiniz üzerinden size geri dönüş sağlayacağız.</p>
+        
+        <form action="https://formspree.io" method="POST" class="space-y-4 text-left max-w-md mx-auto mt-6">
+          <div>
+            <label class="block text-zinc-400 text-xs font-bold uppercase tracking-wider mb-2">Adınız Soyadınız</label>
+            <input type="text" name="name" required class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors">
+          </div>
+          <div>
+            <label class="block text-zinc-400 text-xs font-bold uppercase tracking-wider mb-2">E-Posta Adresiniz</label>
+            <input type="email" name="email" required class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors">
+          </div>
+          <div>
+            <label class="block text-zinc-400 text-xs font-bold uppercase tracking-wider mb-2">Mesajınız</label>
+            <textarea name="message" rows="4" required class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-4 rounded-xl text-sm transition-colors shadow-lg uppercase tracking-wider mt-2">
+            Mesajı Gönder
+          </button>
+        </form>
       </div>
     </section>
 
